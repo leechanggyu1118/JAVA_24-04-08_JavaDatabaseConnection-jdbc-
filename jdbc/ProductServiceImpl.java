@@ -1,5 +1,6 @@
 package jdbc;
 
+
 import java.util.List;
 
 public class ProductServiceImpl implements Service {
@@ -29,6 +30,22 @@ public class ProductServiceImpl implements Service {
 		System.out.println("detail serviceImpl success!!");
 		return dao.selectList(pno);
 	}
+	
+	
+	@Override
+	public int modify(ProductVO p) {
+		System.out.println("modify serviceImpl success!!");
+		return dao.update(p);
+	}
+	@Override
+	public int remove(int pno) {
+		System.out.println("remove serviceImpl success!!");
+		return dao.delete(pno);
+	}
+	
+	
+
+
 	
 	
 	

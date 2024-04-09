@@ -23,7 +23,7 @@ public class ProductDAOImpl implements DAO {
 		
 	}
 	
-	// sql 구문 처리
+
 	
 	@Override
 	public int insert(ProductVO p) {
@@ -90,6 +90,48 @@ public class ProductDAOImpl implements DAO {
 		}
 		return null;
 	}
+
+
+
+	@Override
+	public int update(ProductVO p) {
+		System.out.println("UPDATE DAOImpl success!!");
+		query="UPDATE product SET pname=?, price=?, madeby=?, regdate=now() WHERE pno=?";
+				try {
+					pst = conn.prepareStatement(query);
+					pst.setString(1, p.getPname());
+					pst.setInt(2, p.getPrice());
+					pst.setString(3, p.getMadeby());
+					pst.setInt(4, p.getPno());
+					return pst.executeUpdate();
+				} catch (SQLException e) {
+					System.out.println("UPDATE Error!!");
+					e.printStackTrace();
+				}
+			return 0;
+	}
+
+
+	@Override
+	public int delete(int pno) {
+		System.out.println("DELETE DAOImpl success!!");
+		query="DELETE FROM product WHERE pno=?";
+			try {
+				pst = conn.prepareStatement(query);
+						pst.setInt(1, pno);
+						return pst.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("DELETE Error!!");
+				e.printStackTrace();
+			}
+		return 0;
+	}
+
+
+
+
+
+
 	
 	
 	
